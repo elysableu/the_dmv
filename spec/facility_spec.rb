@@ -29,6 +29,44 @@ RSpec.describe Facility do
   end
 
   describe '#register_vehicle' do
+    it 'can add vehicle registration to facility services' do
 
+    end
+
+    it 'can access car default registration date' do
+      
+    end
+
+    it 'has registered_vehicles lists defaults as empty' do
+
+    end
+
+    it 'has collected fees defaults as 0' do
+
+    end
+
+    it 'can add vehicle to registered_vehicles' do
+
+    end
+
+    it 'can set registration_date' do
+
+    end
+
+    it 'can update plate_type' do
+
+    end
+
+    it 'can update registered_vehicles' do
+
+    end
+    
+    it 'can collect fees for registration' do
+
+    end
+
+    it 'can register vehicles at multiple facilities' do
+      
+    end
   end
 end
