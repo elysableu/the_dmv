@@ -2,17 +2,16 @@ require 'spec_helper'
 
 RSpec.describe Registrant do
   before(:each) do 
-    @darren = Registrant.new({name: 'Darren', age: 15})
-    @freddie = Registrant.new({name: 'Freddie', age: 17, permit: true})
-    @lucy = Registrant.new({name: 'Lucy', age: 32})
+    @darren = Registrant.new({age: 15, name: 'Darren'})
+    @freddie = Registrant.new({age: 17, name: 'Freddie', permit: true})
+    @lucy = Registrant.new({age: 32, name: 'Lucy'})
   end
   describe '#initialize' do
-    xit 'can initialize' do
+    it 'can initialize' do
       expect(@darren).to be_an_instance_of(Registrant)
-      expect(@darren.age).to eq(22)
-      expect(@darren.license_data). eq( )
+      expect(@darren.age).to eq(15)
+      expect(@darren.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
       expect(@darren.name).to eq('Darren')
-      expect(@darren.permit).to be true
     end
   end
 
