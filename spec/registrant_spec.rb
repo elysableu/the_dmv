@@ -16,18 +16,18 @@ RSpec.describe Registrant do
   end
 
   describe '#permit?' do
-    xit 'is false by default' do
+    it 'is false by default' do
       expect(@darren.permit?).to be false
     end
 
-    xit 'can determine if a registrant has a permit' do
+    it 'can determine if a registrant has a permit' do
       expect(@freddie.permit?).to be true
       expect(@lucy.permit?).to be false
     end
   end
 
   describe '#earn_permit' do
-    xit 'can change permit status' do
+    it 'can change permit status' do
       expect(@lucy.permit?).to be false
 
       @lucy.earn_permit
