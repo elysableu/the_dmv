@@ -11,4 +11,8 @@ class Registrant
     @name = regsitrant_details[:name]
     @permit = regsitrant_details[:permit] || false
   end
+
+  def permit?
+    @permit
+  end
 end
