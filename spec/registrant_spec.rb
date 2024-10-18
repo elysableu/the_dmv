@@ -26,4 +26,14 @@ RSpec.describe Registrant do
       expect(@lucy.permit?).to be false
     end
   end
+
+  describe '#earn_permit' do
+    xit 'can change permit status' do
+      expect(@lucy.permit?).to be false
+
+      @lucy.earn_permit
+
+      expect(@lucy.permit?).to be true
+    end
+  end
 end
