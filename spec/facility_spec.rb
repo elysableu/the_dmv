@@ -32,6 +32,14 @@ RSpec.describe Facility do
   end
 
   describe '#register_vehicle' do
+    xit 'can only administer written test when faciltiy includes this service' do
+      expect(@facility_1.register_vehicle(@cruz)).to be false
+
+      @facility_1.add_services('Vehicle Registration')
+
+      expect(@facility_1.register_vehicle(@cruz)).to be true
+    end
+
     it 'can add vehicle registration to facility services' do
       @facility_1.add_service('Vehicle Registration')
       expect(@facility_1.services).to eq(['Vehicle Registration'])
@@ -119,39 +127,69 @@ RSpec.describe Facility do
   end
 
   describe '#admnister_written_test' do
-    it 'can read registrant license data' do 
-      expect(registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    xit 'can read registrant license data' do 
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
-    it 'can access registrant permit status' do
-
+    xit 'can access registrant permit status' do
+      expect(@registrant_1.permit).to be true
     end
 
-    it 'can access registrant age' do 
+    xit 'can access registrant age' do 
+      expect(@registrant_1.age).to eq(16)
     end
 
-    it 'can add Written Test to facility services' do
+    xit 'can add Written Test to facility services' do
+      expect(@facility_1.services).to eq([])
 
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.services).to eq(['Written Test'])
     end
 
-    it 'can adminster written test to registrant' do
+    xit 'can only administer written test when faciltiy includes this service' do
+      expect(@facility_1.administer_written_test(@registrant_1)).to be false
 
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.adminster_written_test(@registrant_1)).to be true
     end
 
-    it 'can administer written test only to registrants with a permit' do
+    xit 'can administer written test to registrant' do
+      @facility_1.add_services('Written Test')
 
+      expect(@facility_1.administer_written_test(@registrant_1)).to be true
+    end 
 
+    xit 'can administer written test only to registrants with a permit' do
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.administer_written_test(@registrant_2)).to be false
+
+      @registrant_2.earn_permit
+
+      expect(@facility_1.administer_written_test(@registrant_2)).to be true
     end
 
-    it 'can adminster test only to registrants 16 years old or older' do
+    xit 'can adminster test only to registrants 16 years old or older' do
+      @facility_1.add_services('Written Test')
 
+      expect(@facility_1.administer_written_test(@registrant_3)).to be false
+
+      @registrant_3.earn_permit
+
+      expect(@facility_1.administer_written_test(@registrant_3)).to be false
     end
 
-    it 'can update license data for written test after passing test' do
+    xit 'can update license data for written test after passing test' do
+      @facility_1.add_services('Written Test')
 
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+
+      @facility_1.administer_written_test(@registrant_1)
+
+      expect(@registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
     end
-
-    it ''
   end
 
   describe '#administer_road_test' do
