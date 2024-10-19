@@ -41,6 +41,7 @@ class Facility
         if registrant.permit? == false
           return false
         else
+          registrant.license_data[:written] = true
           return true
         end
       end
