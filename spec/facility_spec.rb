@@ -32,12 +32,12 @@ RSpec.describe Facility do
   end
 
   describe '#register_vehicle' do
-    xit 'can only administer written test when faciltiy includes this service' do
-      expect(@facility_1.register_vehicle(@cruz)).to be false
+    it 'can only register vehicles when faciltiy includes this service' do
+      expect(@facility_1.register_vehicle(@cruz)).to eq(nil)
 
-      @facility_1.add_services('Vehicle Registration')
+      @facility_1.add_service('Vehicle Registration')
 
-      expect(@facility_1.register_vehicle(@cruz)).to be true
+      expect(@facility_1.register_vehicle(@cruz)).to be_truthy
     end
 
     it 'can add vehicle registration to facility services' do
