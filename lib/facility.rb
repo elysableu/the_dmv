@@ -34,6 +34,14 @@ class Facility
   end
 
   def administer_written_test(registrant)
-   
+    if @services.include?('Written Test')
+      if registrant.permit? == false
+        return false
+      else
+        return true
+      end
+    else
+      return false
+    end
   end
 end
