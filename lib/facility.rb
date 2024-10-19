@@ -34,6 +34,6 @@ class Facility
   end
 
   def administer_written_test(registrant)
-    
+   
   end
 end
