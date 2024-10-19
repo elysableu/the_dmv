@@ -2,15 +2,15 @@ class Registrant
   attr_reader :age, :license_data, :name
 
   # Initialize registrant object
-  def initialize(regsitrant_details)
-    @age = regsitrant_details[:age]
+  def initialize(name, age, permit = false)
+    @age = age
     @license_data = {
       :written => false,
       :license => false,
       :renewed => false
     }
-    @name = regsitrant_details[:name]
-    @permit = regsitrant_details[:permit] || false # Permit status is false by default
+    @name = name
+    @permit = permit # Permit status is false by default
   end
 
   # Check registrants permit status
