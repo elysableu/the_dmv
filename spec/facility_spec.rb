@@ -126,23 +126,23 @@ RSpec.describe Facility do
     end
   end
 
-  describe '#admnister_written_test' do
-    xit 'can read registrant license data' do 
+  describe '#administer_written_test' do
+    it 'can read registrant license data' do 
       expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
-    xit 'can access registrant permit status' do
-      expect(@registrant_1.permit).to be true
+    it 'can access registrant permit status' do
+      expect(@registrant_1.permit?).to be true
     end
 
-    xit 'can access registrant age' do 
-      expect(@registrant_1.age).to eq(16)
+    it 'can access registrant age' do 
+      expect(@registrant_1.age).to eq(18)
     end
 
-    xit 'can add Written Test to facility services' do
+    it 'can add Written Test to facility services' do
       expect(@facility_1.services).to eq([])
 
-      @facility_1.add_services('Written Test')
+      @facility_1.add_service('Written Test')
 
       expect(@facility_1.services).to eq(['Written Test'])
     end
