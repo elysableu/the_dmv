@@ -31,15 +31,14 @@ RSpec.describe Facility do
   describe '#register_vehicle' do
     it 'can add vehicle registration to facility services' do
       @facility_1.add_service('Vehicle Registration')
-
       expect(@facility_1.services).to eq(['Vehicle Registration'])
     end
 
-    xit 'can access car default registration date' do
+    it 'can access car default registration date' do
      expect(@cruz.registration_date).to eq(nil)
     end
 
-    xit 'has registered_vehicles lists defaults as empty' do
+    it 'has registered_vehicles lists defaults as empty' do
       expect(@facility_1.registered_vehicles).to eq([])
     end
 
