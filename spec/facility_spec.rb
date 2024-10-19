@@ -147,22 +147,22 @@ RSpec.describe Facility do
       expect(@facility_1.services).to eq(['Written Test'])
     end
 
-    xit 'can only administer written test when faciltiy includes this service' do
+    it 'can only administer written test when faciltiy includes this service' do
       expect(@facility_1.administer_written_test(@registrant_1)).to be false
 
-      @facility_1.add_services('Written Test')
+      @facility_1.add_service('Written Test')
 
-      expect(@facility_1.adminster_written_test(@registrant_1)).to be true
+      expect(@facility_1.administer_written_test(@registrant_1)).to be true
     end
 
-    xit 'can administer written test to registrant' do
-      @facility_1.add_services('Written Test')
+    it 'can administer written test to registrant' do
+      @facility_1.add_service('Written Test')
 
       expect(@facility_1.administer_written_test(@registrant_1)).to be true
     end 
 
-    xit 'can administer written test only to registrants with a permit' do
-      @facility_1.add_services('Written Test')
+    it 'can administer written test only to registrants with a permit' do
+      @facility_1.add_service('Written Test')
 
       expect(@facility_1.administer_written_test(@registrant_2)).to be false
 
@@ -171,8 +171,8 @@ RSpec.describe Facility do
       expect(@facility_1.administer_written_test(@registrant_2)).to be true
     end
 
-    xit 'can adminster test only to registrants 16 years old or older' do
-      @facility_1.add_services('Written Test')
+    it 'can adminster test only to registrants 16 years old or older' do
+      @facility_1.add_service('Written Test')
 
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
 
@@ -181,8 +181,8 @@ RSpec.describe Facility do
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
     end
 
-    xit 'can update license data for written test after passing test' do
-      @facility_1.add_services('Written Test')
+    it 'can update license data for written test after passing test' do
+      @facility_1.add_service('Written Test')
 
       expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
 
