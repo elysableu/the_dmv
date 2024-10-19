@@ -28,7 +28,6 @@ class Facility
         car.plate_type = :regular
         @collected_fees += 100
       end
-
     else
       return nil
     end
