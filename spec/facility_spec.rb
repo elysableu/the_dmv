@@ -7,6 +7,9 @@ RSpec.describe Facility do
     @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
     @bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
     @camaro = Vehicle.new({vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice} )
+    @registrant_1 = Registrant.new('Bruce', 18, true )
+    @registrant_2 = Registrant.new('Penny', 16 )
+    @registrant_3 = Registrant.new('Tucker', 15 )
   end
   describe '#initialize' do
     it 'can initialize' do
@@ -29,6 +32,14 @@ RSpec.describe Facility do
   end
 
   describe '#register_vehicle' do
+    xit 'can only administer written test when faciltiy includes this service' do
+      expect(@facility_1.register_vehicle(@cruz)).to be false
+
+      @facility_1.add_services('Vehicle Registration')
+
+      expect(@facility_1.register_vehicle(@cruz)).to be true
+    end
+
     it 'can add vehicle registration to facility services' do
       @facility_1.add_service('Vehicle Registration')
       expect(@facility_1.services).to eq(['Vehicle Registration'])
@@ -113,5 +124,79 @@ RSpec.describe Facility do
       expect(@facility_2.registered_vehicles).to eq([])
       expect(@facility_2.collected_fees).to eq(0)
     end
+  end
+
+  describe '#admnister_written_test' do
+    xit 'can read registrant license data' do 
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    end
+
+    xit 'can access registrant permit status' do
+      expect(@registrant_1.permit).to be true
+    end
+
+    xit 'can access registrant age' do 
+      expect(@registrant_1.age).to eq(16)
+    end
+
+    xit 'can add Written Test to facility services' do
+      expect(@facility_1.services).to eq([])
+
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.services).to eq(['Written Test'])
+    end
+
+    xit 'can only administer written test when faciltiy includes this service' do
+      expect(@facility_1.administer_written_test(@registrant_1)).to be false
+
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.adminster_written_test(@registrant_1)).to be true
+    end
+
+    xit 'can administer written test to registrant' do
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.administer_written_test(@registrant_1)).to be true
+    end 
+
+    xit 'can administer written test only to registrants with a permit' do
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.administer_written_test(@registrant_2)).to be false
+
+      @registrant_2.earn_permit
+
+      expect(@facility_1.administer_written_test(@registrant_2)).to be true
+    end
+
+    xit 'can adminster test only to registrants 16 years old or older' do
+      @facility_1.add_services('Written Test')
+
+      expect(@facility_1.administer_written_test(@registrant_3)).to be false
+
+      @registrant_3.earn_permit
+
+      expect(@facility_1.administer_written_test(@registrant_3)).to be false
+    end
+
+    xit 'can update license data for written test after passing test' do
+      @facility_1.add_services('Written Test')
+
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+
+      @facility_1.administer_written_test(@registrant_1)
+
+      expect(@registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
+    end
+  end
+
+  describe '#administer_road_test' do
+
+  end
+
+  describe '#renew_drivers_license' do
+
   end
 end
