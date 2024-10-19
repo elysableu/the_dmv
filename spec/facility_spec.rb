@@ -114,4 +114,16 @@ RSpec.describe Facility do
       expect(@facility_2.collected_fees).to eq(0)
     end
   end
+
+  describe '#admnister_written_test' do
+
+  end
+
+  describe '#administer_road_test' do
+
+  end
+
+  describe '#renew_drivers_license' do
+  
+  end
 end
