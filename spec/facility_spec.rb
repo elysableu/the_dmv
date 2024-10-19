@@ -92,7 +92,7 @@ RSpec.describe Facility do
       expect(@facility_1.registered_vehicles).to eq([@cruz, @camaro, @bolt])
     end
     
-    xit 'can collect fees for registration' do
+    it 'can collect fees for registration' do
       @facility_1.add_service('Vehicle Registration')
 
       @facility_1.register_vehicle(@cruz)
@@ -106,7 +106,7 @@ RSpec.describe Facility do
 
     end
 
-    xit 'can register vehicles at multiple facilities' do
+    it 'can register vehicles at multiple facilities' do
       expect(@facility_2.registered_vehicles).to eq([])
       expect(@facility_2.services).to eq([])
       expect(@facility_2.register_vehicle(@bolt)).to eq(nil)
