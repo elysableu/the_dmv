@@ -171,7 +171,7 @@ RSpec.describe Facility do
       expect(@facility_1.administer_written_test(@registrant_2)).to be true
     end
 
-    it 'can adminster test only to registrants 16 years old or older' do
+    it 'can adminster written test only to registrants 16 years old or older' do
       @facility_1.add_service('Written Test')
 
       expect(@facility_1.administer_written_test(@registrant_3)).to be false
