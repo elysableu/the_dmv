@@ -57,7 +57,7 @@ RSpec.describe Facility do
       expect(@facility_1.registered_vehicles[2]).to eq(@bolt)
     end
 
-    xit 'can set registration_date when registered' do
+    it 'can set registration_date when registered' do
       @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
       @facility_1.register_vehicle(@camaro)
@@ -68,7 +68,7 @@ RSpec.describe Facility do
       expect(@bolt.registration_date).to eq(Date.today)
     end
 
-    xit 'can update plate_type when registered' do
+    it 'can update plate_type when registered' do
       @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
       @facility_1.register_vehicle(@camaro)
@@ -79,7 +79,7 @@ RSpec.describe Facility do
       expect(@bolt.plate_type).to eq(:ev)
     end
 
-    xit 'can update registered_vehicles' do
+    it 'can update registered_vehicles' do
       @facility_1.add_service('Vehicle Registration')
       
       @facility_1.register_vehicle(@cruz)
