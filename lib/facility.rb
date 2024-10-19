@@ -20,11 +20,15 @@ class Facility
       car.registration_date = Date.today
       if car.antique? 
         car.plate_type = :antique
+        @collected_fees += 25
       elsif car.electric_vehicle?
         car.plate_type = :ev
+        @collected_fees += 200
       else
         car.plate_type = :regular
+        @collected_fees += 100
       end
+
     else
       return nil
     end
