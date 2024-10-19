@@ -14,9 +14,11 @@ class Facility
     @services << service
   end
 
-  def register_vehicle
+  def register_vehicle(car)
     if @services.include?('Vehicle Registration')
-
+      @registered_vehicles << car
+    else
+      return nil
     end
   end
 end
