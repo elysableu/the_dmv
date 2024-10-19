@@ -2,9 +2,9 @@ require 'spec_helper'
 
 RSpec.describe Registrant do
   before(:each) do 
-    @darren = Registrant.new({age: 15, name: 'Darren'})
-    @freddie = Registrant.new({age: 17, name: 'Freddie', permit: true})
-    @lucy = Registrant.new({age: 32, name: 'Lucy'})
+    @darren = Registrant.new('Darren', 18)
+    @freddie = Registrant.new('Freddie', 17, true)
+    @lucy = Registrant.new('Lucy', 38)
   end
   describe '#initialize' do
     it 'can initialize' do
