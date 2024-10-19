@@ -42,11 +42,12 @@ RSpec.describe Facility do
       expect(@facility_1.registered_vehicles).to eq([])
     end
 
-    xit 'has collected fees defaults as 0' do
+    it 'has collected fees defaults as 0' do
       expect(@facility_1.collected_fees).to eq(0)
     end
 
-    xit 'can add vehicle to registered_vehicles when registered' do
+    it 'can add vehicle to registered_vehicles when registered' do
+      @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
       @facility_1.register_vehicle(@camaro)
       @facility_1.register_vehicle(@bolt)
@@ -57,6 +58,7 @@ RSpec.describe Facility do
     end
 
     xit 'can set registration_date when registered' do
+      @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
       @facility_1.register_vehicle(@camaro)
       @facility_1.register_vehicle(@bolt)
@@ -67,6 +69,7 @@ RSpec.describe Facility do
     end
 
     xit 'can update plate_type when registered' do
+      @facility_1.add_service('Vehicle Registration')
       @facility_1.register_vehicle(@cruz)
       @facility_1.register_vehicle(@camaro)
       @facility_1.register_vehicle(@bolt)
@@ -77,6 +80,8 @@ RSpec.describe Facility do
     end
 
     xit 'can update registered_vehicles' do
+      @facility_1.add_service('Vehicle Registration')
+      
       @facility_1.register_vehicle(@cruz)
       expect(@facility_1.registered_vehicles).to eq([@cruz])
 
@@ -88,6 +93,8 @@ RSpec.describe Facility do
     end
     
     xit 'can collect fees for registration' do
+      @facility_1.add_service('Vehicle Registration')
+
       @facility_1.register_vehicle(@cruz)
       expect(@facility_1.collected_fees).to eq(100)
 
@@ -102,7 +109,7 @@ RSpec.describe Facility do
     xit 'can register vehicles at multiple facilities' do
       expect(@facility_2.registered_vehicles).to eq([])
       expect(@facility_2.services).to eq([])
-      expect(@facility_2.registered_vehicles).to eq(nil)
+      expect(@facility_2.register_vehicle(@bolt)).to eq(nil)
       expect(@facility_2.registered_vehicles).to eq([])
       expect(@facility_2.collected_fees).to eq(0)
     end
