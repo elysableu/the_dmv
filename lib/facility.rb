@@ -17,6 +17,7 @@ class Facility
   def register_vehicle(car)
     if @services.include?('Vehicle Registration')
       @registered_vehicles << car
+      car.registration_date = Date.today
     else
       return nil
     end
