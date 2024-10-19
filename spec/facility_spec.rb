@@ -30,43 +30,82 @@ RSpec.describe Facility do
 
   describe '#register_vehicle' do
     it 'can add vehicle registration to facility services' do
+      @facility_1.add_service('Vehicle Registration')
 
+      expect(@facility_1.services).to eq(['Vehicle Registration'])
     end
 
-    it 'can access car default registration date' do
+    xit 'can access car default registration date' do
+     expect(@cruz.registration_date).to eq(nil)
+    end
+
+    xit 'has registered_vehicles lists defaults as empty' do
+      expect(@facility_1.registered_vehicles).to eq([])
+    end
+
+    xit 'has collected fees defaults as 0' do
+      expect(@facility_1.collected_fees).to eq(0)
+    end
+
+    xit 'can add vehicle to registered_vehicles when registered' do
+      @facility_1.register_vehicle(@cruz)
+      @facility_1.register_vehicle(@camaro)
+      @facility_1.register_vehicle(@bolt)
+
+      expect(@facility_1.registered_vehicles[0]).to eq(@cruz)
+      expect(@facility_1.registered_vehicles[1]).to eq(@camaro)
+      expect(@facility_1.registered_vehicles[2]).to eq(@bolt)
+    end
+
+    xit 'can set registration_date when registered' do
+      @facility_1.register_vehicle(@cruz)
+      @facility_1.register_vehicle(@camaro)
+      @facility_1.register_vehicle(@bolt)
+
+      expect(@cruz.registration_date).to eq(Date.today)
+      expect(@camaro.registration_date).to eq(Date.today)
+      expect(@bolt.registration_date).to eq(Date.today)
+    end
+
+    xit 'can update plate_type when registered' do
+      @facility_1.register_vehicle(@cruz)
+      @facility_1.register_vehicle(@camaro)
+      @facility_1.register_vehicle(@bolt)
+
+      expect(@cruz.plate_type).to eq(:regular)
+      expect(@camaro.plate_type).to eq(:antique)
+      expect(@bolt.plate_type).to eq(:ev)
+    end
+
+    xit 'can update registered_vehicles' do
+      @facility_1.register_vehicle(@cruz)
+      expect(@facility_1.registered_vehicles).to eq([@cruz])
+
+      @facility_1.register_vehicle(@camaro)
+      expect(@facility_1.registered_vehicles).to eq([@cruz, @camaro])
       
-    end
-
-    it 'has registered_vehicles lists defaults as empty' do
-
-    end
-
-    it 'has collected fees defaults as 0' do
-
-    end
-
-    it 'can add vehicle to registered_vehicles' do
-
-    end
-
-    it 'can set registration_date' do
-
-    end
-
-    it 'can update plate_type' do
-
-    end
-
-    it 'can update registered_vehicles' do
-
+      @facility_1.register_vehicle(@bolt)
+      expect(@facility_1.registered_vehicles).to eq([@cruz, @camaro, @bolt])
     end
     
-    it 'can collect fees for registration' do
+    xit 'can collect fees for registration' do
+      @facility_1.register_vehicle(@cruz)
+      expect(@facility_1.collected_fees).to eq(100)
+
+      @facility_1.register_vehicle(@camaro)
+      expect(@facility_1.collected_fees).to eq(125)
+
+      @facility_1.register_vehicle(@bolt)
+      expect(@facility_1.collected_fees).to eq(325)
 
     end
 
-    it 'can register vehicles at multiple facilities' do
-      
+    xit 'can register vehicles at multiple facilities' do
+      expect(@facility_2.registered_vehicles).to eq([])
+      expect(@facility_2.services).to eq([])
+      expect(@facility_2.registered_vehicles).to eq(nil)
+      expect(@facility_2.registered_vehicles).to eq([])
+      expect(@facility_2.collected_fees).to eq(0)
     end
   end
 end
