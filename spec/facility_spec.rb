@@ -7,6 +7,9 @@ RSpec.describe Facility do
     @cruz = Vehicle.new({vin: '123456789abcdefgh', year: 2012, make: 'Chevrolet', model: 'Cruz', engine: :ice} )
     @bolt = Vehicle.new({vin: '987654321abcdefgh', year: 2019, make: 'Chevrolet', model: 'Bolt', engine: :ev} )
     @camaro = Vehicle.new({vin: '1a2b3c4d5e6f', year: 1969, make: 'Chevrolet', model: 'Camaro', engine: :ice} )
+    @registrant_1 = Registrant.new('Bruce', 18, true )
+    @registrant_2 = Registrant.new('Penny', 16 )
+    @registrant_3 = Registrant.new('Tucker', 15 )
   end
   describe '#initialize' do
     it 'can initialize' do
@@ -116,7 +119,39 @@ RSpec.describe Facility do
   end
 
   describe '#admnister_written_test' do
+    it 'can read registrant license data' do 
+      expect(registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
+    end
 
+    it 'can access registrant permit status' do
+
+    end
+
+    it 'can access registrant age' do 
+    end
+
+    it 'can add Written Test to facility services' do
+
+    end
+
+    it 'can adminster written test to registrant' do
+
+    end
+
+    it 'can administer written test only to registrants with a permit' do
+
+
+    end
+
+    it 'can adminster test only to registrants 16 years old or older' do
+
+    end
+
+    it 'can update license data for written test after passing test' do
+
+    end
+
+    it ''
   end
 
   describe '#administer_road_test' do
@@ -124,6 +159,6 @@ RSpec.describe Facility do
   end
 
   describe '#renew_drivers_license' do
-  
+
   end
 end
