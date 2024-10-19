@@ -32,4 +32,8 @@ class Facility
       return nil
     end
   end
+
+  def administer_written_test(registrant)
+    
+  end
 end
