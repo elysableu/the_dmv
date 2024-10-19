@@ -18,6 +18,13 @@ class Facility
     if @services.include?('Vehicle Registration')
       @registered_vehicles << car
       car.registration_date = Date.today
+      if car.antique? 
+        car.plate_type = :antique
+      elsif car.electric_vehicle?
+        car.plate_type = :ev
+      else
+        car.plate_type = :regular
+      end
     else
       return nil
     end
