@@ -60,7 +60,7 @@ class Facility
         if registrant.license_data[:written] == false
           return false
         else 
-          
+          registrant.license_data[:license] = true
           return true
         end
       end
