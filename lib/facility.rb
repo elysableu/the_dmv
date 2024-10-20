@@ -49,4 +49,9 @@ class Facility
       return false
     end
   end
+
+  def administer_road_test(registrant)
+    
+  end
+  
 end
