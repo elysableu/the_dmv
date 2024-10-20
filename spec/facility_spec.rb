@@ -208,8 +208,9 @@ RSpec.describe Facility do
     it 'can only administer road test when faciltiy includes this service' do
       @facility_1.add_service('Written Test')
       expect(@facility_1.administer_road_test(@registrant_1)).to be false
-
+      
       @facility_1.add_service('Road Test')
+      @facility_1.administer_written_test(@registrant_1)
       expect(@facility_1.administer_road_test(@registrant_1)).to be true
     end
 
@@ -239,12 +240,12 @@ RSpec.describe Facility do
       @facility_1.add_service('Road Test')
       
       expect(@facility_1.administer_road_test(@registrant_1)).to be false
-      @registrant_1.earn_permit
+      
       @facility_1.administer_written_test(@registrant_1)
       expect(@facility_1.administer_road_test(@registrant_1)).to be true
     end
 
-    xit 'can update license data when road test is passed' do
+    it 'can update license data when road test is passed' do
       @facility_1.add_service('Written Test')
       @facility_1.add_service('Road Test')
 
@@ -253,7 +254,6 @@ RSpec.describe Facility do
 
       @facility_1.administer_road_test(@registrant_1)
       expect(@registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
-      require 'pry': binding.pry
     end
   end
 
