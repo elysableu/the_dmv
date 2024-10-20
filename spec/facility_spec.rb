@@ -193,7 +193,29 @@ RSpec.describe Facility do
   end
 
   describe '#administer_road_test' do
+    xit 'can get registrant license data' do
 
+    end
+
+    xit 'can add road test to the list of facility services' do
+
+    end
+
+    xit 'can only administer road test when faciltiy includes this service' do
+      
+    end
+
+    xit 'can only administer road teset to registrant with a permit' do
+
+    end
+
+    xit 'can only administer road test after registrant has passed written test' do
+
+    end
+
+    xit 'can update license data when road test is passed' do
+
+    end
   end
 
   describe '#renew_drivers_license' do
