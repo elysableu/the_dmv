@@ -52,7 +52,11 @@ class Facility
 
   def administer_road_test(registrant)
     if @services.include?('Road Test')
-      return true
+      if registrant.permit? == false
+        return false
+      else
+        return true
+      end
     else
       return false
     end
