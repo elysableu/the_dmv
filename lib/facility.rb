@@ -55,10 +55,14 @@ class Facility
       if registrant.age < 16
         return false
       else
-        if registrant.permit? == false
+        if registrant.permit? == false 
           return false
         else
-          return true
+          if registrant.license_data[:written] == false
+            return false
+          else 
+            return true
+          end
         end
       end
     else
