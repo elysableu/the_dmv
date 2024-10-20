@@ -194,27 +194,64 @@ RSpec.describe Facility do
 
   describe '#administer_road_test' do
     xit 'can get registrant license data' do
-
+      expect(@registrant_1.license_data).to eq({:written=>false, :license=>false, :renewed=>false})
     end
 
     xit 'can add road test to the list of facility services' do
+      @facility_1.add_service('Written Test')
+      expect(@facility_1.services).to eq(["Written Test"])
 
+      @facility_1.add_service('Road Test')
+      expect(@facility_1.services).to eq(["Written Test", "Road Test"])
     end
 
     xit 'can only administer road test when faciltiy includes this service' do
-      
+      @facility_1.add_service('Written Test')
+      expect(@facility_1.administer_road_test(@registrant_1)).to be false
+
+      @facility_1.add_service('Road Test')
+      expect(@facility_1.administer_road_test(@registrant_1)).to be true
     end
 
     xit 'can only administer road teset to registrant with a permit' do
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      
+      expect(@facility_1.administer_road_test(@registrant_2)).to be false
 
+      @registrant_2.earn_permit
+      expect(@facility_1.administer_road_test(@registrant_2)).to be true
+    end
+
+    xit 'can only administer road test to registrant 16 years or older' do
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      
+      expect(@facility_1.administer_road_test(@registrant_3)).to be false
+
+      @registrant_3.earn_permit
+      expect(@facility_1.administer_road_test(@registrant_3)).to be false
     end
 
     xit 'can only administer road test after registrant has passed written test' do
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
+      
+      expect(@facility_1.administer_road_test(@registrant_1)).to be false
 
+      @facility_1.administer_written_test(@registrant_1)
+      expect(@facility_1.administer_road_test(@registrant_1)).to be true
     end
 
     xit 'can update license data when road test is passed' do
+      @facility_1.add_service('Written Test')
+      @facility_1.add_service('Road Test')
 
+      @facility_1.administer_written_test(@registrant_1)
+      expect(@registrant_1.license_data).to eq({:written=>true, :license=>false, :renewed=>false})
+
+      @facility_1.administer_road_test(@registrant_1)
+      expect(@registrant_1.license_data).to eq({:written=>true, :license=>true, :renewed=>false})
     end
   end
 
