@@ -260,14 +260,45 @@ RSpec.describe Facility do
       @facility_1.add_service('Road Test')
     end
     it 'can only renew drivers license if the facility includes this service' do
-      
-    end
+      expect(@facility_1.renew_drivers_license(registrant_1)).to be false
 
-    it 'can change registrants renewed license data' do
+      @facility_1.add_service('Renew License')
 
+      expect(@facility_1.renew_drivers_license(@registrant_1)).to be true
     end
 
     it 'can only renew license if registrant has earned license previously' do
+      @facility_1.add_service('Renew License')
+
+      expect(@facility_1.renew_drivers_license(@registrant_1)).to be false
+      expect(@facility_1.renew_drivers_license(@registrant_2)).to be false
+
+      @facility_1.administer_written_test(@registrant_1)
+      @facility_1.administer_road_test(@registrant_1)
+
+      @registrant_2.earn_permit
+      @facility_1.administer_written_test(@registrant_2)
+      @facility_1.administer_road_test(@registrant_2)
+
+      @registrant_3.earn_permit
+      @facility_1.administer_written_test(@registrant_3)
+      @facility_1.administer_road_test(@registrant_3)
+
+      expect(@facility_1.renew_drivers_license(@registrant_1)).to be true
+      xpect(@facility_1.renew_drivers_license(@registrant_2)).to be true
+      xpect(@facility_1.renew_drivers_license(@registrant_3)).to be false
+    end
+
+    it 'can change registrants renewed license data' do
+      @facility_1.add_service('Renew License')
+      @facility_1.administer_written_test(@registrant_1)
+      @facility_1.administer_road_test(@registrant_1)
+
+      expect(@registant_1.license_data[:renew]).to eq({:written=>true, :license=>true, :renewed=>false})
+
+      @facility_1.renew_drivers_license(@registant_1)
+
+      expect(@registant_1.license_data[:renew]).to eq({:written=>true, :license=>true, :renewed=>true})
 
     end
   end
