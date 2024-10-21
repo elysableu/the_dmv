@@ -258,6 +258,17 @@ RSpec.describe Facility do
   end
 
   describe '#renew_drivers_license' do
+    
+    it 'can only renew drivers license if the facility includes this service' do
 
+    end
+
+    it 'can change registrants renewed license data' do
+
+    end
+
+    it 'can only renew license if registrant has earned license previously' do
+
+    end
   end
 end
