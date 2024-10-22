@@ -18,10 +18,12 @@ RSpec.describe FacilityBuilder do
       expect(@builder.facilities.length).to eq(@co_dmv_office_locations.length)
       expect(@builder.facilities[0..2].map(&:name)).to eq(["DMV Tremont Branch", "DMV Northeast Branch", "DMV Northwest Branch"])
     end
+  end
 
-    xit 'can add services to the new facility object' do
+  describe '#format_facility_services' do
+    it 'can add services to the new facility object' do
       @builder.build_facility_data(@co_dmv_office_locations)
-      expect(@builder.facilities[0].services).to eq("vehicle titles, registration, renewals;  VIN inspections")
+      expect(@builder.facilities[0].services).to eq(["vehicle titles", "registration", "renewals", "VIN inspections"])
     end
   end
 end
