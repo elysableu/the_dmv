@@ -11,7 +11,17 @@ class FacilityBuilder
                       address: "#{dmv_entry[:address_li]} #{dmv_entry[:address_1]} \n #{dmv_entry[:city]} #{dmv_entry[:state]} #{dmv_entry[:zip]}",
                       phone: dmv_entry[:phone]
                       })
+
+      format_facility_services(new_facility,dmv_entry[:services_p])
+
       @facilities << new_facility      
     end
+  end
+
+  def format_facility_services(new_facility, services_list)
+    new_facility_services = services_list.split(/[;,]/)
+      new_facility_services.each do |service|
+        new_facility.add_service(service.strip)
+      end
   end
 end
