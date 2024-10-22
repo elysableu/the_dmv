@@ -13,9 +13,10 @@ RSpec.describe VehicleFactory do
 
   describe '#create_vehicles' do
     it 'can create an array of new vehicle objects from DmvDataService' do
-      expect(@factory.created_vehicles).to be nil
+      expect(@factory.created_vehicles).to be_empty
       @factory.create_vehicles(@wa_ev_registrations)
-      expect(@factory.created_vehicles[0..2].map(&:make)).to eq(["TOYOTA", "TOYOTA", "NISSAN"])
+      expect(@factory.created_vehicles.length).to eq(@wa_ev_registrations.length)
+      expect(@factory.created_vehicles[0..2].map(&:make)).to eq(["NISSAN", "TESLA", "TESLA"])
     end
   end
 end
