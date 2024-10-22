@@ -12,8 +12,10 @@ RSpec.describe VehicleFactory do
   end
 
   describe '#create_vehicles' do
-    xit 'can create an array of new vehicle objects from DmvDataService' do
-      # expect(@factory.create_vehicles(@wa_ev_registrations)).to eq()
+    it 'can create an array of new vehicle objects from DmvDataService' do
+      expect(@factory.created_vehicles).to be nil
+      @factory.create_vehicles(@wa_ev_registrations)
+      expect(@factory.created_vehicles[0..2].map(&:make)).to eq(["TOYOTA", "TOYOTA", "NISSAN"])
     end
   end
 end
