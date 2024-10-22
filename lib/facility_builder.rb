@@ -2,20 +2,22 @@ class FacilityBuilder
   def build_facility_data(dmv_data)
     facilities = []
     dmv_data.each do |dmv_entry|
+      
+      
       entry_name = nil
       entry_address = nil
       entry_phone = nil
 
       if dmv_entry.key?(:dmv_office)
-        entry_name = dmv_entry[:dmv_office]
+        entry_name = dmv_entry[:dmv_office].strip
         entry_address = format_address(dmv_entry, 1)
         entry_phone = dmv_entry[:phone]
       elsif dmv_entry.key?(:office_name)
-        entry_name = dmv_entry[:office_name]
+        entry_name = dmv_entry[:office_name].strip
         entry_address = format_address(dmv_entry, 2)
         entry_phone = dmv_entry[:public_phone_number]
       elsif dmv_entry.key?(:name)
-        entry_name = dmv_entry[:name]
+        entry_name = dmv_entry[:name].strip
         entry_address = format_address(dmv_entry, 3)
         entry_phone = dmv_entry[:phone]
       end

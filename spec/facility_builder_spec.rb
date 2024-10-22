@@ -36,7 +36,7 @@ RSpec.describe FacilityBuilder do
       expect(@mo_facilities).to be_empty
       @mo_facilities = @builder.build_facility_data(@mo_dmv_office_locations)
       expect(@mo_facilities.length).to eq(@mo_dmv_office_locations.length)
-      expect(@mo_facilities[0..2].map(&:name)).to eq(["FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE", "BUTLER", "CENTRAL WENT END"])
+      expect(@mo_facilities[0..2].map(&:name)).to eq(["FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE", "BUTLER", "CENTRAL WEST END"])
     end
   end
 
