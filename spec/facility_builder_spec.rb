@@ -4,8 +4,8 @@ RSpec.describe FacilityBuilder do
   before(:each) do
     @builder = FacilityBuilder.new
     @co_dmv_office_locations = DmvDataService.new.co_dmv_office_locations
-    @ny_dmv_locations = DmvDataService.new.ny_dmv_office_locations
-    @mo_dmv_locations = DmvDataService.new.mo_dmv_office_locations
+    @ny_dmv_office_locations = DmvDataService.new.ny_dmv_office_locations
+    @mo_dmv_office_locations = DmvDataService.new.mo_dmv_office_locations
     @co_facilities = []
     @ny_facilities = []
     @mo_facilities = []
@@ -27,13 +27,12 @@ RSpec.describe FacilityBuilder do
 
     it 'can accept facility data from another data sources' do
       expect(@ny_facilities).to be_empty
-      puts @ny_dmv_office_locations
       @ny_facilities = @builder.build_facility_data(@ny_dmv_office_locations)
       expect(@ny_facilities.length).to eq(@ny_dmv_office_locations.length)
       expect(@ny_facilities[0..2].map(&:name)).to eq(["LAKE PLACID", "HUDSON", "RIVERHEAD KIOSK"])
     end
 
-    xit 'can accept facility data from YET another data source' do
+    it 'can accept facility data from YET another data source' do
       expect(@mo_facilities).to be_empty
       @mo_facilities = @builder.build_facility_data(@mo_dmv_office_locations)
       expect(@mo_facilities.length).to eq(@mo_dmv_office_locations.length)
