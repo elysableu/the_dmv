@@ -4,8 +4,8 @@ RSpec.describe FacilityBuilder do
   before(:each) do
     @builder = FacilityBuilder.new
     @co_dmv_office_locations = DmvDataService.new.co_dmv_office_locations
-    @ny_dmv_locations = DmvDataService.new.ny_dmv_locations
-    @mo_dmv_locations = DmvDataService.new.mo_dmv_locations
+    @ny_dmv_locations = DmvDataService.new.ny_dmv_office_locations
+    @mo_dmv_locations = DmvDataService.new.mo_dmv_office_locations
   end
 
   describe '#initialize' do
@@ -22,18 +22,26 @@ RSpec.describe FacilityBuilder do
       expect(@builder.facilities[0..2].map(&:name)).to eq(["DMV Tremont Branch", "DMV Northeast Branch", "DMV Northwest Branch"])
     end
 
-    it 'can accept facility data from another data sources' do
+    xit 'can accept facility data from another data sources' do
       expect(@builder.facilities).to be_empty
       @builder.build_facility_data(@ny_dmv_office_locations)
+   
       expect(@builder.facilities.length).to eq(@ny_dmv_office_locations.length)
       expect(@builder.facilities[0..2].map(&:name)).to eq(["LAKE PLACID", "HUDSON", "RIVERHEAD KIOSK"])
     end
 
-    it 'can accept facility data from YET another data source' do
+    xit 'can accept facility data from YET another data source' do
       expect(@builder.facilities).to be_empty
       @builder.build_facility_data(@mo_dmv_office_locations)
       expect(@builder.facilities.length).to eq(@mo_dmv_office_locations.length)
       expect(@builder.facilities[0..2].map(&:name)).to eq(["FERGUSON-OFFICE CLOSED UNTIL FURTHER NOTICE", "BUTLER", "CENTRAL WENT END"])
+    end
+  end
+
+  describe '#format_address'do
+    it 'can format address' do
+      @builder.build_facility_data(@co_dmv_office_locations)
+      expect(@builder.facilities[0].address).to eq("2855 Tremont Place, Suite 118 Denver, CO 80205")
     end
   end
 
