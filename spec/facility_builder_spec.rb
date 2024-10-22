@@ -4,6 +4,8 @@ RSpec.describe FacilityBuilder do
   before(:each) do
     @builder = FacilityBuilder.new
     @co_dmv_office_locations = DmvDataService.new.co_dmv_office_locations
+    @ny_dmv_locations = DmvDataService.new.ny_dmv_locations
+    @mo_dmv_locations = DmvDataService.new.mo_dmv_locations
   end
   describe '#initialize' do
     it 'can create new FacilityBuilder object' do
@@ -17,6 +19,10 @@ RSpec.describe FacilityBuilder do
       @builder.build_facility_data(@co_dmv_office_locations)
       expect(@builder.facilities.length).to eq(@co_dmv_office_locations.length)
       expect(@builder.facilities[0..2].map(&:name)).to eq(["DMV Tremont Branch", "DMV Northeast Branch", "DMV Northwest Branch"])
+    end
+
+    it 'can accept facility data from multiple data sources' do
+
     end
   end
 
